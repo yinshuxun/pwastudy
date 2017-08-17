@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <image src="./a.jpg" style="width:600px;height:200px;" /> index.html
+    <script>
+        // Register the service worker
+        // 注册 service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+                // Registration was successful
+                // 注册成功
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (err) {
+                // registration failed :(
+                // 注册失败 :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+        setInterval(function () {
+            var title = document.title;
+            if (true) {
+                if (/新/.test(title) == false) {
+                    document.title = '【你有新消息】';
+                } else {
+                    document.title = '【　　　　　】';
+                }
+            } else {
+                document.title = titleInit;
+            }
+        }, 500);
+
+        Notification.requestPermission().then(function (result) {
+            // result可能是是granted, denied, 或default.
+            console.log(result)
+        });
+
+        new Notification("这是一个通知",{
+
+        })
+    </script>
+
+</body>
+
+</html>
